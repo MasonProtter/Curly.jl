@@ -36,7 +36,10 @@ foo(1, 2), foo(1, 2.0)
 #+end_src
 
 #+RESULTS:
-: (3, -1.0)
+#+begin_example
+(3, -1.0)
+#+end_example
+
 
 #+begin_src julia
 @macro foo(a, b) {
@@ -47,8 +50,10 @@ foo(1, 2), foo(1, 2.0)
 #+end_src
 
 #+RESULTS:
-: a = 1
-: b = :(1 + im)
+#+begin_example
+a = 1
+b = :(1 + im)
+#+end_example
 
 #+begin_src julia
 @for i ∈ 1:10 j ∈ 1:10 {
@@ -60,9 +65,11 @@ foo(1, 2), foo(1, 2.0)
 #+end_src
 
 #+RESULTS:
-: i + j = 2
-: i + j = 3
-: i + j = 4
+#+begin_example
+i + j = 2
+i + j = 3
+i + j = 4
+#+end_example
 
 #+begin_src julia
 @module Foo {
@@ -76,9 +83,11 @@ foo(1, 2), foo(1, 2.0)
 #+end_src
 
 #+RESULTS:
-: no end here!
-: no end here!
-: WARNING: replacing module Foo.
+#+begin_example
+no end here!
+no end here!
+WARNING: replacing module Foo.
+#+end_example
 
 #+begin_src julia
 @do sum((1,2)) x {
@@ -88,8 +97,8 @@ foo(1, 2), foo(1, 2.0)
 #+end_src
 
 #+RESULTS:
-:RESULTS:
-: we even can do `do`
-: we even can do `do`
-: 3
-:END:
+#+begin_example
+we even can do `do`
+we even can do `do`
+3
+#+end_example
