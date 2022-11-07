@@ -19,9 +19,11 @@ using Curly
 }
 #+end_src
 
-#+RESULTS:
+#+begin_example
 : Is this a good idea?
 : Not really, no. I had fun writing it though.
+#+end_example
+________________________________
 
 #+begin_src julia
 @function foo(x::T, y::U) where {T, U} {
@@ -35,11 +37,10 @@ using Curly
 foo(1, 2), foo(1, 2.0)
 #+end_src
 
-#+RESULTS:
 #+begin_example
 (3, -1.0)
 #+end_example
-
+________________________________
 
 #+begin_src julia
 @macro foo(a, b) {
@@ -49,11 +50,11 @@ foo(1, 2), foo(1, 2.0)
 @foo 1 1 + im
 #+end_src
 
-#+RESULTS:
 #+begin_example
 a = 1
 b = :(1 + im)
 #+end_example
+________________________________
 
 #+begin_src julia
 @for i ∈ 1:10 j ∈ 1:10 {
@@ -64,12 +65,13 @@ b = :(1 + im)
 }
 #+end_src
 
-#+RESULTS:
 #+begin_example
 i + j = 2
 i + j = 3
 i + j = 4
 #+end_example
+________________________________
+
 
 #+begin_src julia
 @module Foo {
@@ -82,12 +84,12 @@ i + j = 4
 };
 #+end_src
 
-#+RESULTS:
 #+begin_example
 no end here!
 no end here!
-WARNING: replacing module Foo.
 #+end_example
+________________________________
+
 
 #+begin_src julia
 @do sum((1,2)) x {
@@ -96,9 +98,10 @@ WARNING: replacing module Foo.
 }
 #+end_src
 
-#+RESULTS:
 #+begin_example
 we even can do `do`
 we even can do `do`
 3
 #+end_example
+
+________________________________
