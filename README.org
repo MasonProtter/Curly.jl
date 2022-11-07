@@ -1,0 +1,95 @@
+:PROPERTIES:
+:header-args: :session endless :export both
+:END:
+
+* Curly.jl
+
+Curly.jl lets you use curly braces ~{}~ in places of ~begin end~ blocks.
+
+#+begin_src julia
+using Curly
+
+@let good_idea = missing msg="Is this a good idea?" {
+    println(msg)
+    @if good_idea === true {
+        println("Yes!")
+    } {
+        println("Not really, no. I had fun writing it though.")
+    }
+}
+#+end_src
+
+#+RESULTS:
+: Is this a good idea?
+: Not really, no. I had fun writing it though.
+
+#+begin_src julia
+@function foo(x::T, y::U) where {T, U} {
+    @if T === U {
+        x + y
+    } {
+        x - y
+    }
+}
+
+foo(1, 2), foo(1, 2.0)
+#+end_src
+
+#+RESULTS:
+: (3, -1.0)
+
+#+begin_src julia
+@macro foo(a, b) {
+    @show a b
+    nothing
+}
+@foo 1 1 + im
+#+end_src
+
+#+RESULTS:
+: a = 1
+: b = :(1 + im)
+
+#+begin_src julia
+@for i ∈ 1:10 j ∈ 1:10 {
+    @show i+j
+    @if i+j > 3 {
+        break
+    }
+}
+#+end_src
+
+#+RESULTS:
+: i + j = 2
+: i + j = 3
+: i + j = 4
+
+#+begin_src julia
+@module Foo {
+    using Curly
+    i = 1
+    @while i < 3 {
+        println("no end here!")
+        global i += 1
+    }
+};
+#+end_src
+
+#+RESULTS:
+: no end here!
+: no end here!
+: WARNING: replacing module Foo.
+
+#+begin_src julia
+@do sum((1,2)) x {
+    println("we even can do `do`")
+    x
+}
+#+end_src
+
+#+RESULTS:
+:RESULTS:
+: we even can do `do`
+: we even can do `do`
+: 3
+:END:
